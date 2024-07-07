@@ -1,0 +1,13 @@
+.heading-container {
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    color: #101820ff;
+    background: #fff;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+  }

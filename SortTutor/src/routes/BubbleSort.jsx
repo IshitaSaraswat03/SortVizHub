@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react";
-import "./BubbleSort.css";
+import "./Styles.css";
+import Heading from "../components/Heading/Heading";
+import Controls from "../components/Controls/Controls";
+import { GenRandomArray } from "../components/Utils/GenRandomArray";
 
 const BubbleSortVisualizer = () => {
   const [array, setArray] = useState([]);
   const [isSorting, setIsSorting] = useState(false);
   const [speed, setSpeed] = useState(500);
   const [arraySize, setArraySize] = useState(20);
+  const [currentPair, setCurrentPair] = useState([-1, -1]);
+  const [sortedIndices, setSortedIndices] = useState([]);
 
   useEffect(() => {
     resetArray();
   }, [arraySize]);
 
   const resetArray = () => {
-    const arr = [];
-    for (let i = 0; i < arraySize; i++) {
-      arr.push(Math.floor(Math.random() * 100) + 1);
-    }
+    const arr = GenRandomArray(arraySize);
     setArray(arr);
+    setSortedIndices([]);
   };
 
   const bubbleSort = async () => {
@@ -24,6 +27,7 @@ const BubbleSortVisualizer = () => {
     const arr = array.slice();
     for (let i = 0; i < arr.length - 1; i++) {
       for (let j = 0; j < arr.length - i - 1; j++) {
+        setCurrentPair([j, j + 1]);
         if (arr[j] > arr[j + 1]) {
           const temp = arr[j];
           arr[j] = arr[j + 1];
@@ -32,60 +36,44 @@ const BubbleSortVisualizer = () => {
           await new Promise((resolve) => setTimeout(resolve, speed));
         }
       }
+      setSortedIndices((prev) => [...prev, arr.length - i - 1]);
     }
+    setSortedIndices((prev) => [...prev, 0]);
+    setCurrentPair([-1, -1]);
     setIsSorting(false);
   };
 
   return (
     <div className="visualizer-container">
-      <div className="heading-container">
-        <h2>
-          Bubble Sort
-          <hr
-            style={{ width: "200px", border: "none", height: "1px" }}
-            color="#e7e7e7"
-          />
-        </h2>
-      </div>
+      <Heading title="Bubble Sort" />
       <div className="array-container">
         {array.map((value, idx) => (
-          <div
-            className="array-bar"
-            key={idx}
-            style={{
-              height: `${value * 3}px`,
-            }}
-          >
-            {value}
+          <div className="array-bar-container" key={idx}>
+            <div
+              className="array-bar"
+              style={{
+                height: `${value * 3}px`,
+                backgroundColor: sortedIndices.includes(idx)
+                  ? "lightgreen"
+                  : currentPair.includes(idx)
+                  ? "tomato"
+                  : "lightskyblue",
+                width: `${600 / arraySize}px`, // Adjust width based on array size
+              }}
+            ></div>
+            <div className="array-value">{value}</div>
           </div>
         ))}
       </div>
-      <div className="controls">
-        <button onClick={resetArray} disabled={isSorting}>
-          Generate New Array
-        </button>
-        <button onClick={bubbleSort} disabled={isSorting}>
-          Start Bubble Sort
-        </button>
-        <div className="label">Speed</div>
-        <input
-          type="range"
-          min="50"
-          max="1000"
-          value={speed}
-          onChange={(e) => setSpeed(Number(e.target.value))}
-          disabled={isSorting}
-        />
-        <div className="label">Array Size</div>
-        <input
-          type="range"
-          min="5"
-          max="50"
-          value={arraySize}
-          onChange={(e) => setArraySize(Number(e.target.value))}
-          disabled={isSorting}
-        />
-      </div>
+      <Controls
+        resetArray={resetArray}
+        sortAlgorithm={bubbleSort}
+        isSorting={isSorting}
+        speed={speed}
+        setSpeed={setSpeed}
+        arraySize={arraySize}
+        setArraySize={setArraySize}
+      />
     </div>
   );
 };
