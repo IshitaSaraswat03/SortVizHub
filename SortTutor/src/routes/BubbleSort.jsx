@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./Styles.css";
 import Heading from "../components/Heading/Heading";
 import Controls from "../components/Controls/Controls";
+import About from "../components/About/About";
 import { GenRandomArray } from "../components/Utils/GenRandomArray";
+import { bubbleSortData } from "../components/Utils/SortingData";
 
 const BubbleSortVisualizer = () => {
   const [array, setArray] = useState([]);
@@ -32,7 +34,7 @@ const BubbleSortVisualizer = () => {
           const temp = arr[j];
           arr[j] = arr[j + 1];
           arr[j + 1] = temp;
-          setArray(arr.slice());
+          setArray([...arr]);
           await new Promise((resolve) => setTimeout(resolve, speed));
         }
       }
@@ -42,6 +44,8 @@ const BubbleSortVisualizer = () => {
     setCurrentPair([-1, -1]);
     setIsSorting(false);
   };
+
+  const { description, complexity, implementationCode } = bubbleSortData;
 
   return (
     <div className="visualizer-container">
@@ -74,6 +78,13 @@ const BubbleSortVisualizer = () => {
         arraySize={arraySize}
         setArraySize={setArraySize}
       />
+      <div className="about-container">
+        <About
+          description={description}
+          complexity={complexity}
+          implementationCode={implementationCode}
+        />
+      </div>
     </div>
   );
 };

@@ -1,0 +1,72 @@
+/* About.css */
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.info-parent {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin-top: 50px;
+    gap: 100px;
+}
+
+.sort-description {
+    font-size: 28px;
+    max-width: 50%;
+    text-align: justify;
+}
+
+.section-title {
+    font-family: 'Jura', Courier, monospace;
+    font-size: 35px;
+    color: #d17f3f;
+    margin-bottom: 20px;
+}
+
+.description-text {
+    font-size: 20px;
+}
+
+.table-box {
+    text-align: left;
+}
+
+.sort-table {
+    margin-top: 30px;
+    border-collapse: collapse;
+    border-radius: 5px;
+}
+
+.sort-table th,
+.sort-table td {
+    padding: 10px;
+    border: 2px solid #d17f3f;
+}
+
+.code-container {
+    width: 63%;
+    margin-top: 50px;
+    text-align: left;
+}
+
+.code-title {
+    font-family: 'Jura', Courier, monospace;
+    font-size: 35px;
+    color: #d17f3f;
+    margin-bottom: 20px;
+}
+
+.code {
+    display: block;
+    padding: 20px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+}
