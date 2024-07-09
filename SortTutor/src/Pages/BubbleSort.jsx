@@ -4,7 +4,7 @@ import Heading from "../components/Heading/Heading";
 import Controls from "../components/Controls/Controls";
 import About from "../components/About/About";
 import { GenRandomArray } from "../components/Utils/GenRandomArray";
-import { bubbleSortData } from "../components/Utils/SortingData";
+import { sortingAlgorithmsData } from "../components/Utils/SortingData"
 
 const BubbleSortVisualizer = () => {
   const [array, setArray] = useState([]);
@@ -45,7 +45,7 @@ const BubbleSortVisualizer = () => {
     setIsSorting(false);
   };
 
-  const { description, complexity, implementationCode } = bubbleSortData;
+  const { description, complexity, implementationCode } = sortingAlgorithmsData.bubbleSortData;
 
   return (
     <div className="visualizer-container">

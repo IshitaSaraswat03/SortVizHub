@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./Styles.css";
 import Heading from "../components/Heading/Heading";
 import Controls from "../components/Controls/Controls";
+import About from "../components/About/About";
 import { GenRandomArray } from "../components/Utils/GenRandomArray";
+import { sortingAlgorithmsData } from "../components/Utils/SortingData";
 
 const MergeSortVisualizer = () => {
   const [array, setArray] = useState([]);
@@ -33,7 +35,9 @@ const MergeSortVisualizer = () => {
     for (let i = 0; i < n1; i++) L[i] = arr[left + i];
     for (let j = 0; j < n2; j++) R[j] = arr[mid + 1 + j];
 
-    let i = 0, j = 0, k = left;
+    let i = 0,
+      j = 0,
+      k = left;
     while (i < n1 && j < n2) {
       if (L[i] <= R[j]) {
         arr[k] = L[i];
@@ -88,6 +92,8 @@ const MergeSortVisualizer = () => {
     await mergeSort(arr, 0, arr.length - 1);
   };
 
+  const { description, complexity, implementationCode } = sortingAlgorithmsData.mergeSortData;
+
   return (
     <div className="visualizer-container">
       <Heading title="Merge Sort" />
@@ -119,6 +125,13 @@ const MergeSortVisualizer = () => {
         arraySize={arraySize}
         setArraySize={setArraySize}
       />
+      <div className="about-container">
+        <About
+          description={description}
+          complexity={complexity}
+          implementationCode={implementationCode}
+        />
+      </div>
     </div>
   );
 };

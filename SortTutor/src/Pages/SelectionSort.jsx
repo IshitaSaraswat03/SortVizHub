@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./Styles.css";
 import Heading from "../components/Heading/Heading";
 import Controls from "../components/Controls/Controls";
+import About from "../components/About/About";
 import { GenRandomArray } from "../components/Utils/GenRandomArray";
+import { sortingAlgorithmsData } from "../components/Utils/SortingData";
 
 const SelectionSortVisualizer = () => {
   const [array, setArray] = useState([]);
@@ -53,6 +55,8 @@ const SelectionSortVisualizer = () => {
     setIsSorting(false);
   };
 
+  const { description, complexity, implementationCode } = sortingAlgorithmsData.selectionSortData;
+
   return (
     <div className="visualizer-container">
       <Heading title="Selection Sort" />
@@ -67,10 +71,10 @@ const SelectionSortVisualizer = () => {
                 backgroundColor: sortedIndices.includes(idx)
                   ? "lightgreen"
                   : idx === minIndex
-                  ? "blue"
-                  : currentIndices.includes(idx)
-                  ? "tomato"
-                  : "skyblue",
+                    ? "blue"
+                    : currentIndices.includes(idx)
+                      ? "tomato"
+                      : "skyblue",
               }}
             ></div>
             <div className="array-value">{value}</div>
@@ -86,6 +90,13 @@ const SelectionSortVisualizer = () => {
         arraySize={arraySize}
         setArraySize={setArraySize}
       />
+      <div className="about-container">
+        <About
+          description={description}
+          complexity={complexity}
+          implementationCode={implementationCode}
+        />
+      </div>
     </div>
   );
 };

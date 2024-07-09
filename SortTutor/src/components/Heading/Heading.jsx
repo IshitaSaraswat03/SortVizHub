@@ -6,7 +6,7 @@ const Heading = ({ title }) => {
       <h2>
         {title}
         <hr
-          style={{ width: "200px", border: "none", height: "1px" }}
+          style={{ width: "250px", border: "none", height: "2px" }}
           color="#e7e7e7"
         />
       </h2>
