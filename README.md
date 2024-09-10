@@ -27,7 +27,7 @@ The Sorting Algorithms Visualizer is a web application that helps users understa
 
 2. **Navigate to the project directory:**
     ```bash
-    cd sorting-algorithms-visualizer
+    cd SortTutor
     ```
 
 3. **Install dependencies:**
@@ -37,10 +37,10 @@ The Sorting Algorithms Visualizer is a web application that helps users understa
 
 4. **Run the application:**
     ```bash
-    npm start
+    npm run dev
     ```
 
-    The application will open in your default web browser at `http://localhost:3000`.
+    The application will open in your default web browser at `http://localhost:5173`.
 
 ## Technologies Used
 
